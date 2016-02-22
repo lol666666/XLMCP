@@ -25,15 +25,34 @@ public class Constant {
 
 	// ================================================================================
 
-	// ===================================线上环境帐号信息==================================
+	// =============================线上环境帐号信息==================================
 
 	// ================================================================================
 
+	// ===========================App模块接口名(apple2)=================================
+		public static String APP_INIT = "app.init";
+	// ================================================================================
+			
+	// ==========================Configure模块接口名(apple2)============================
+		public static String CONFIGURE_GET = "configure.get";
+	// ================================================================================		
+			
+	// ===========================AD模块接口名(apple2)==================================
+		public static String AD_GET = "ad.get";
+		public static String AD_TRACK = "ad.track";
+		public static String AD_GETWECHATFACEADS = "ad.getWeChatFaceAds";
+	// ================================================================================			
+			
+	// =========================Expression模块接口名(apple2)============================
+		public static String EXPRESSION_COUNT = "expression.count";
+		public static String EXPRESSION_LIST = "expression.list";
+		public static String EXPRESSION_SHAKE = "expression.shake";
+	// ================================================================================
 
 	// ===========================Test模块接口名=======================================
-	public static String TEST_NOP = "test.nop";
-	public static String TEST_NORESP = "test.noresp";
-	public static String TEST_ONLY1P = "test.only1p";
-	public static String TEST_STD = "test.std";
+		public static String TEST_NOP = "test.nop";
+		public static String TEST_NORESP = "test.noresp";
+		public static String TEST_ONLY1P = "test.only1p";
+		public static String TEST_STD = "test.std";
 	// ================================================================================
 }

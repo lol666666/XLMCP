@@ -1,4 +1,4 @@
-package com.xunlei.mcp.test.modules.driver;
+package com.xunlei.mcp.test.drivecases.driver;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

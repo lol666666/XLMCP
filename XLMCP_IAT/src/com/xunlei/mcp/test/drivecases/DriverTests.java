@@ -8,8 +8,8 @@ import java.util.List;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.junit.Test;
 
+import com.xunlei.mcp.test.drivecases.driver.CaseDriver;
 import com.xunlei.mcp.test.modules.base.BaseCase;
-import com.xunlei.mcp.test.modules.driver.CaseDriver;
 
 public class DriverTests extends BaseCase {
 	private DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

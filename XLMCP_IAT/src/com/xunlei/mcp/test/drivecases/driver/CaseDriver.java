@@ -1,4 +1,4 @@
-package com.xunlei.mcp.test.modules.driver;
+package com.xunlei.mcp.test.drivecases.driver;
 
 import java.util.LinkedHashMap;
 import java.util.List;
