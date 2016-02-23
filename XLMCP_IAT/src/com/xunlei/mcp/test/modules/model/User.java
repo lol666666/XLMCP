@@ -140,7 +140,7 @@ public class User {
 		http_param.put("v", Constant.VERSION);
 		http_param.put("callId", String.valueOf(new Date().getTime()));
 		http_param.put("deviceId", Constant.DEVICE_ID);
-		http_param.put("gz", "1");
+//		http_param.put("gz", "1");
 		if (this.token != null) {
 			http_param.put("t", this.token);
 		}
@@ -150,7 +150,7 @@ public class User {
 
 		String urlHead = user_post_url.substring(0,5);
 		JSONObject resultObject = null;
-		if (urlHead == "https") {
+		if (urlHead.equals("https")) {
 			try {
 				resultObject = HttpTools.httpsPostRequest(
 						ParamUtils.GetPostUrl(user_post_url, api), http_param);

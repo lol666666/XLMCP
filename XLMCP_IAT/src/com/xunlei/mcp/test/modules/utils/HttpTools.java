@@ -85,7 +85,7 @@ public class HttpTools {
 	 */
 	public static JSONObject httpPostRequest(String url, Map<String, String> map) {
 		JSONObject resultJsonObject = null;
-		System.out.println("请求地址：" + url);
+		System.out.println("http请求地址：" + url);
 		CloseableHttpClient client = HttpClientBuilder.create().build();
 		try {
 			HttpPost post = new HttpPost(url);
@@ -114,7 +114,7 @@ public class HttpTools {
 		}
 		return resultJsonObject;
 	}
-	
+
 	/**
 	 * https POST请求
 	 * 
@@ -123,12 +123,13 @@ public class HttpTools {
 	 * @param map
 	 *            ，请求的参数Map
 	 * @return 返回JSON串形式的结果
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@SuppressWarnings("resource")
-	public static JSONObject httpsPostRequest(String url, Map<String, String> map) throws Exception {
+	public static JSONObject httpsPostRequest(String url,
+			Map<String, String> map) throws Exception {
 		JSONObject resultJsonObject = null;
-		System.out.println("请求地址：" + url);
+		System.out.println("https请求地址：" + url);
 		HttpClient client = null;
 		try {
 			client = new SSLClient();
@@ -141,9 +142,13 @@ public class HttpTools {
 					params.add(param);
 				}
 			}
-			post.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params,
+					"UTF-8");
+			entity.setContentType("application/x-www-form-urlencoded");
+			post.setEntity(entity);
 			HttpResponse response = client.execute(post);
-			String resultString = EntityUtils.toString(response.getEntity());
+			String resultString = EntityUtils.toString(response.getEntity(),
+					"UTF-8");
 			resultJsonObject = JSONObject.fromObject(resultString);
 			if (resultJsonObject == null) {
 				fail("response error, body is null...");
@@ -216,4 +221,3 @@ public class HttpTools {
 		return resultJsonObject;
 	}
 }
-
