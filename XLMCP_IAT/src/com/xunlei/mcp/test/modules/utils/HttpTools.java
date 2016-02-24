@@ -97,7 +97,10 @@ public class HttpTools {
 					params.add(param);
 				}
 			}
-			post.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params,
+					"UTF-8");
+			entity.setContentType("application/x-www-form-urlencoded");
+			post.setEntity(entity);
 			HttpResponse response = client.execute(post);
 			String resultString = EntityUtils.toString(response.getEntity());
 			resultJsonObject = JSONObject.fromObject(resultString);

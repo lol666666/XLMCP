@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.xunlei.mcp.test.modules.base.BaseCase;
 import com.xunlei.mcp.test.modules.utils.Constant;
 
-public class Get extends BaseCase{
+public class ConfGet extends BaseCase{
 	@Test(summary = "获取云控配置", expectedResults = "返回结果格式正确", index = 1)
 	public void testConfigGet() {
 		g_user.setHttpParam("guid", Constant.DEVICE_ID);

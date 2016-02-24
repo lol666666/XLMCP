@@ -1,4 +1,4 @@
-package com.xunlei.mcp.test.cases.apple1.ad.baidureci;
+package com.xunlei.mcp.test.cases.apple1.sniffer.hotword;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.xunlei.mcp.test.modules.base.BaseCase;
 import com.xunlei.mcp.test.modules.utils.Constant;
 
-public class ReciGet extends BaseCase{
+public class HotwordGet extends BaseCase{
 	@Test(summary = "获取电影类型热词", expectedResults = "返回结果格式正确", index = 1)
 	public void testReciGet_Movie() {
 		g_user.setHttpParam("tab", "movie");
