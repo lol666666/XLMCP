@@ -7,6 +7,7 @@ import java.util.Date;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xunlei.mcp.test.modules.base.BaseCase;

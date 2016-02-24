@@ -35,7 +35,7 @@ public class Constant {
 	// ================================================================================
 
 	// ===========================Apple1模块接口名=======================================
-		public static String SNIFFER_HOTWORD_GET = "sniffer.hotword.get";
+		public static String SPY_HOTWORD_GET = "spy.hotword.get";
 		public static String SNIFFER_GET = "sniffer.get";
 	// ================================================================================
 	
