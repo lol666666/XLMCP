@@ -34,9 +34,8 @@ public class Constant {
 	// ================================================================================
 
 	// ===========================Apple1模块接口名=======================================
-		public static String AD_BAIDURECI_GET = "ad.baidureci.get";
-		public static String AD_SNIFFER_GET = "ad.sniffer.get";
-		public static String AD_SNIFFER_SET = "ad.sniffer.set";
+		public static String SNIFFER_HOTWORD_GET = "sniffer.hotword.get";
+		public static String SNIFFER_GET = "sniffer.get";
 	// ================================================================================
 	
 	// ===========================Apple2模块接口名=======================================
