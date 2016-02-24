@@ -7,7 +7,8 @@ package com.xunlei.mcp.test.modules.utils;
  */
 public class Constant {
 	// ===================================平台级参数==================================
-	public static String TEST_URL = "https://test.api.xlmc.sandai.net/api";
+//	public static String TEST_URL = "https://test.api.xlmc.sandai.net/api";
+	public static String TEST_URL = "https://test.api.bchbc.com/api";
 	public static String PRE_URL = "http://pre.api.xlmc.sandai.net/api";
 	public static String ONLINE_URL = "http://api.xlmc.sandai.net/api";
 	public static String MIUI_ONLINE_URL = "http://api.xlmc.sec.miui.com/api";
