@@ -2,14 +2,19 @@ package com.xunlei.mcp.test.modules.utils;
 
 import static org.junit.Assert.fail;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
+
+import net.sf.json.JSONObject;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -30,8 +35,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-
-import net.sf.json.JSONObject;
 
 /**
  * 通过http请求调用接口
@@ -147,7 +150,13 @@ public class HttpTools {
 			}
 			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params,
 					"UTF-8");
-			entity.setContentType("application/x-www-form-urlencoded");
+			InputStream in = entity.getContent();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			String line;
+			while((line = reader.readLine()) != null) {
+				System.out.println(line);
+			}
+			entity.setContentType("application/x-www-form-urlencoded; charset=utf-8");
 			post.setEntity(entity);
 			HttpResponse response = client.execute(post);
 			String resultString = EntityUtils.toString(response.getEntity(),
