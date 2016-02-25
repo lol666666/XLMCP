@@ -19,7 +19,7 @@ public class Shake extends BaseCase {
 		for (int i = 0; i < expressionArray.size(); i++) {
 			JSONObject expressionObject = expressionArray.getJSONObject(i);
 			assertTrue("表情ID错误", expressionObject.getInt("id") > 0);
-			assertTrue("表情链接错误", expressionObject.getString("img").length() > 0);
+			assertTrue("表情链接错误", !expressionObject.getString("img").isEmpty());
 			assertTrue("表情类型错误", expressionObject.getInt("type") > 0);
 		}
 	}

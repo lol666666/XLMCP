@@ -17,7 +17,7 @@ public class Track extends BaseCase{
 	@Test(summary = "推荐广告的用户行为反馈", expectedResults = "返回结果格式正确", index = 1)
 	public void testTrack() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
-		g_user.setHttpParam("mainName", "packagename");
+		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("itemId", "com.xunlei.fileexplorer");
 		g_user.setHttpParam("type", "like");
 		g_user.setHttpParam("sessionId", sessionId);
