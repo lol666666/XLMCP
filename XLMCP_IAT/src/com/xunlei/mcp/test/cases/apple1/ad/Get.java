@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Date;
 
 import net.sf.json.JSONArray;
@@ -21,7 +19,7 @@ public class Get extends BaseCase{
 	String sessionId = String.valueOf(new Date().getTime());
 	
 	@Test(summary = "获取通知栏推荐广告", expectedResults = "返回结果格式正确", index = 1)
-	public void testAdGet() throws UnsupportedEncodingException {
+	public void testAdGet() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
 		g_user.setHttpParam("pid", "2");
 		g_user.setHttpParam("mainName", "我是天才");
