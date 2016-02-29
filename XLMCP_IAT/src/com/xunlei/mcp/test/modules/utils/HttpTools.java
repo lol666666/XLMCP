@@ -176,7 +176,7 @@ public class HttpTools {
 	}
 
 	/**
-	 * Multipart方式上传文件
+	 * http上传Multipart方式文件
 	 * 
 	 * @param sUrl
 	 *            ，请求的地址
@@ -186,7 +186,7 @@ public class HttpTools {
 	 *            ，请求的参数
 	 * @return 返回JSON串形式的结果
 	 */
-	static public JSONObject SendMultiRequest(String sUrl,
+	static public JSONObject UploadHttpFile(String sUrl,
 			Map<String, String> params, String filePath) {
 		JSONObject resultJsonObject = null;
 		File file = new File(filePath);
@@ -228,6 +228,68 @@ public class HttpTools {
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return resultJsonObject;
+	}
+	
+	/**
+	 * http上传Multipart方式文件
+	 * 
+	 * @param sUrl
+	 *            ，请求的地址
+	 * @param filePath
+	 *            ，上传的文件路径
+	 * @param params
+	 *            ，请求的参数
+	 * @return 返回JSON串形式的结果
+	 */
+	@SuppressWarnings("resource")
+	static public JSONObject UploadHttpsFile(String sUrl,
+			Map<String, String> params, String filePath) {
+		JSONObject resultJsonObject = null;
+		File file = new File(filePath);
+		System.out.println("https请求地址：" + sUrl);
+		HttpClient client = null;
+		try {
+			client = new SSLClient();
+			HttpPost post = new HttpPost(sUrl);
+			FileBody bin = new FileBody(file);
+
+			MultipartEntityBuilder multiEntityBuilder = MultipartEntityBuilder
+					.create().setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+			multiEntityBuilder.addPart("file", bin);
+
+			Iterator<Entry<String, String>> it = params.entrySet().iterator();
+			while (it.hasNext()) {
+				Map.Entry<String, String> entry = it.next();
+				String key = entry.getKey().toString();
+				String value = entry.getValue().toString();
+				StringBody part = new StringBody(value,
+						ContentType.MULTIPART_FORM_DATA);
+				multiEntityBuilder.addPart(key, part);
+
+			}
+
+			HttpEntity reqEntity = multiEntityBuilder.build();
+			post.setEntity(reqEntity);
+
+			HttpResponse response = client.execute(post);
+
+			String resultString = EntityUtils.toString(response.getEntity());
+			resultJsonObject = JSONObject.fromObject(resultString);
+			if (resultJsonObject == null) {
+				fail("response error, body is null...");
+			}
+			System.out.println("返回结果：" + resultJsonObject);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return resultJsonObject;

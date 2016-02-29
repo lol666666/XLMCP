@@ -6,6 +6,8 @@ import java.util.Date;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xunlei.mcp.test.modules.base.BaseCase;
@@ -21,11 +23,13 @@ public class ADGet extends BaseCase {
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "shortVideo");
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
+		g_user.setHttpParam("sessionId", sessionId);
+		g_user.setHttpParam("packageName", "com.android.fileexplorer");
 		g_user.setHttpParam("ext_loadType", "firstLoad");
 		g_user.setHttpParam("ext_page", "1");
 		g_user.setHttpParam("ext_adsCount", "1");
 		g_user.setHttpParam("ext_template", "2.5");
-		g_user.setHttpParam("ext_appVersion", "1.0");
+		g_user.setHttpParam("ext_appVersion", "1.7.0");
 		g_user.setHttpParam("ext_platform", "android");
 		g_user.setHttpParam("ext_tagId", "1.23.a.1");
 		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
@@ -63,6 +67,8 @@ public class ADGet extends BaseCase {
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "shortVideo");
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
+		g_user.setHttpParam("sessionId", sessionId);
+		g_user.setHttpParam("packageName", "com.android.fileexplorer");
 		g_user.setHttpParam("ext_loadType", "refresh");
 		g_user.setHttpParam("ext_page", "1");
 		g_user.setHttpParam("ext_adsCount", "1");
@@ -106,6 +112,8 @@ public class ADGet extends BaseCase {
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "shortVideo");
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
+		g_user.setHttpParam("sessionId", sessionId);
+		g_user.setHttpParam("packageName", "com.android.fileexplorer");
 		g_user.setHttpParam("ext_loadType", "loadMore");
 		g_user.setHttpParam("ext_page", "2");
 		g_user.setHttpParam("ext_adsCount", "1");
@@ -142,6 +150,7 @@ public class ADGet extends BaseCase {
 		}
 	}
 
+	@Ignore
 	@Test(summary = "获取表情推荐广告（必选参数）", expectedResults = "返回结果格式正确", index = 2)
 	public void testAdGet_Expression() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);

@@ -140,6 +140,7 @@ public class User {
 		http_param.put("v", Constant.VERSION);
 		http_param.put("callId", String.valueOf(new Date().getTime()));
 		http_param.put("deviceId", Constant.DEVICE_ID);
+		http_param.put("ip", "106.39.75.134");
 //		http_param.put("gz", "1");
 		if (this.token != null) {
 			http_param.put("t", this.token);
@@ -189,7 +190,7 @@ public class User {
 		http_param.put("sig", sig);
 		paramsPrint(http_param);
 		System.out.println("上传服务地址：" + api);
-		JSONObject result = HttpTools.SendMultiRequest(api, http_param,
+		JSONObject result = HttpTools.UploadHttpFile(api, http_param,
 				filePath);
 		http_param.clear();
 		return result;

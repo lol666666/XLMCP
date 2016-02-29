@@ -45,9 +45,22 @@ public class Constant {
 		public static String AD_GET = "ad.get";
 		public static String AD_TRACK = "ad.track";
 		public static String AD_GETWECHATFACEADS = "ad.getWeChatFaceAds";
-		public static String EXPRESSION_COUNT = "expression.count";
-		public static String EXPRESSION_LIST = "expression.list";
+		public static String EXPRESSION_COUNT = "exp.count";
+		public static String EXPRESSION_LIST = "exp.list";
 		public static String EXPRESSION_SHAKE = "expression.shake";
+		public static String FILE_CHECKNEW = "file.checkNew";
+		public static String FILE_COMMIT = "file.commit";
+		public static String FILE_COMMITCHUNK = "file.commitChunk";
+		public static String FILE_GETSETTINGS = "file.getSettings";
+		public static String FILE_GETVIDEODIRS = "file.getVideoDirs";
+		public static String FILE_LIST = "file.list";
+		public static String FILE_PLAY = "file.play";
+		public static String FILE_PRAISE = "file.praise";
+		public static String FILE_QUERY = "file.query";
+		public static String FILE_REPORTSPAM = "file.reportSpam";
+		public static String FILE_REQUESTUPLOAD = "file.requestUpload";
+		public static String FILE_REQUESTUPLOADCHUNK = "file.requestUploadChunk";
+		public static String FILE_SHARE = "file.share";
 	// ================================================================================
 
 	// ===========================Test模块接口名=======================================
