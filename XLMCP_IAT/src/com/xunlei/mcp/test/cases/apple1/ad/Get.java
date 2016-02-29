@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Date;
 
 import net.sf.json.JSONArray;
@@ -26,16 +28,32 @@ public class Get extends BaseCase{
 		g_user.setHttpParam("recType", "app");
 		g_user.setHttpParam("sessionId", sessionId);
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
-//		g_user.setHttpParam("packageName", "com.android.download");
-//		g_user.setHttpParam("ip", "10.235.228.64");
+		g_user.setHttpParam("packageName", "com.android.download");
+		g_user.setHttpParam("ip", "10.235.228.64");
+		g_user.setHttpParam("version", "1");
+		g_user.setHttpParam("latitude ", "90");
+		g_user.setHttpParam("longitude", "100");
+		g_user.setHttpParam("serviceProvider", "cn");
 		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
+		
 		assertNotNull("返回结果为空",result);
+		try {
+			System.out.println("返回结果decode后 ：" + URLDecoder.decode(result.toString(), "utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String[] resultKeys = {"result", "s_ab", "params", "items"};
 		containKeys(resultKeys, result); //遍历result所有key结构
 		JSONArray itemsArray = result.getJSONArray("items");
 		JSONObject itemObject = itemsArray.getJSONObject(0);
 		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
 		containKeys(itemKeys, itemObject); //遍历items所有key结构
+		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
+		assertTrue("actionTitle值为空", !itemObject.getString("actionTitle").isEmpty());
+		assertTrue("actionUrl值为空", !itemObject.getString("actionUrl").isEmpty());
+		assertTrue("buttonActionUrl值为空", !itemObject.getString("buttonActionUrl").isEmpty());
+
 	}
 	
 	private void containKeys(String[] keys, JSONObject json) {
