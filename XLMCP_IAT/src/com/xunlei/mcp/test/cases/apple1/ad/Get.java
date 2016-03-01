@@ -20,11 +20,11 @@ import com.xunlei.mcp.test.modules.utils.Constant;
 public class Get extends BaseCase{
 	String sessionId = String.valueOf(new Date().getTime());
 	
-	@Test(summary = "获取通知栏推荐广告", expectedResults = "返回结果格式正确", index = 1)
-	public void testAdGet() {
+	@Test(summary = "获取通知栏推荐app(应用商店)类型广告", expectedResults = "返回结果格式正确", index = 1)
+	public void testAdGetApp() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
 		g_user.setHttpParam("pid", "2");
-		g_user.setHttpParam("mainName", "我是天才");
+		g_user.setHttpParam("mainName", "mainName的值");
 		g_user.setHttpParam("recType", "app");
 		g_user.setHttpParam("sessionId", sessionId);
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
@@ -53,7 +53,183 @@ public class Get extends BaseCase{
 		assertTrue("actionTitle值为空", !itemObject.getString("actionTitle").isEmpty());
 		assertTrue("actionUrl值为空", !itemObject.getString("actionUrl").isEmpty());
 		assertTrue("buttonActionUrl值为空", !itemObject.getString("buttonActionUrl").isEmpty());
-
+	}
+	
+	@Test(summary = "获取通知栏推荐own(自身来源)的类型广告", expectedResults = "返回格式正确", index = 2)
+	public void testAdGetOwn() {
+		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("pid", "2");
+		g_user.setHttpParam("mainName", "mainName的值");
+		g_user.setHttpParam("recType", "own");
+		g_user.setHttpParam("sessionId", sessionId);
+		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
+		g_user.setHttpParam("packageName", "com.android.download");
+		g_user.setHttpParam("ip", "10.235.228.64");
+		g_user.setHttpParam("version", "1");
+		g_user.setHttpParam("latitude ", "90");
+		g_user.setHttpParam("longitude", "100");
+		g_user.setHttpParam("serviceProvider", "cn");
+		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
+		
+		assertNotNull("返回结果为空",result);
+		try {
+			System.out.println("返回结果decode后 ：" + URLDecoder.decode(result.toString(), "utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String[] resultKeys = {"result", "s_ab", "params", "items"};
+		containKeys(resultKeys, result); //遍历result所有key结构
+		JSONArray itemsArray = result.getJSONArray("items");
+		JSONObject itemObject = itemsArray.getJSONObject(0);
+		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
+		containKeys(itemKeys, itemObject); //遍历items所有key结构
+		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
+		assertTrue("actionTitle值为空", !itemObject.getString("actionTitle").isEmpty());
+		assertTrue("actionUrl值为空", !itemObject.getString("actionUrl").isEmpty());
+		assertTrue("buttonActionUrl值为空", !itemObject.getString("buttonActionUrl").isEmpty());
+	}
+	
+	@Test(summary = "获取通知栏推荐video(小米视频)的类型广告", expectedResults = "返回格式正确", index = 3)
+	public void testAdGetVideo() {
+		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("pid", "2");
+		g_user.setHttpParam("mainName", "mainName的值");
+		g_user.setHttpParam("recType", "video");
+		g_user.setHttpParam("sessionId", sessionId);
+		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
+		g_user.setHttpParam("packageName", "com.android.download");
+		g_user.setHttpParam("ip", "10.235.228.64");
+		g_user.setHttpParam("version", "1");
+		g_user.setHttpParam("latitude ", "90");
+		g_user.setHttpParam("longitude", "100");
+		g_user.setHttpParam("serviceProvider", "cn");
+		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
+		
+		assertNotNull("返回结果为空",result);
+		try {
+			System.out.println("返回结果decode后 ：" + URLDecoder.decode(result.toString(), "utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String[] resultKeys = {"result", "s_ab", "params", "items"};
+		containKeys(resultKeys, result); //遍历result所有key结构
+		JSONArray itemsArray = result.getJSONArray("items");
+		JSONObject itemObject = itemsArray.getJSONObject(0);
+		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
+		containKeys(itemKeys, itemObject); //遍历items所有key结构
+		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
+		assertTrue("actionTitle值为空", !itemObject.getString("actionTitle").isEmpty());
+		assertTrue("actionUrl值为空", !itemObject.getString("actionUrl").isEmpty());
+		assertTrue("buttonActionUrl值为空", !itemObject.getString("buttonActionUrl").isEmpty());
+	}
+	
+	
+	@Test(summary = "获取通知栏推荐other(其它)的类型广告", expectedResults = "返回格式正确", index = 4)
+	public void testAdGetOther() {
+		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("pid", "2");
+		g_user.setHttpParam("mainName", "mainName的值");
+		g_user.setHttpParam("recType", "other");
+		g_user.setHttpParam("sessionId", sessionId);
+		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
+		g_user.setHttpParam("packageName", "com.android.download");
+		g_user.setHttpParam("ip", "10.235.228.64");
+		g_user.setHttpParam("version", "1");
+		g_user.setHttpParam("latitude ", "90");
+		g_user.setHttpParam("longitude", "100");
+		g_user.setHttpParam("serviceProvider", "cn");
+		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
+		
+		assertNotNull("返回结果为空",result);
+		try {
+			System.out.println("返回结果decode后 ：" + URLDecoder.decode(result.toString(), "utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String[] resultKeys = {"result", "s_ab", "params", "items"};
+		containKeys(resultKeys, result); //遍历result所有key结构
+		JSONArray itemsArray = result.getJSONArray("items");
+		JSONObject itemObject = itemsArray.getJSONObject(0);
+		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
+		containKeys(itemKeys, itemObject); //遍历items所有key结构
+		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
+		assertTrue("actionTitle值为空", !itemObject.getString("actionTitle").isEmpty());
+		assertTrue("actionUrl值为空", !itemObject.getString("actionUrl").isEmpty());
+		assertTrue("buttonActionUrl值为空", !itemObject.getString("buttonActionUrl").isEmpty());
+	}
+	
+	
+	@Test(summary = "获取通知栏推荐game(小米游戏)的类型广告", expectedResults = "返回格式正确", index = 5)
+	public void testAdGetGame() {
+		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("pid", "2");
+		g_user.setHttpParam("mainName", "mainName的值");
+		g_user.setHttpParam("recType", "game");
+		g_user.setHttpParam("sessionId", sessionId);
+		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
+		g_user.setHttpParam("packageName", "com.android.download");
+		g_user.setHttpParam("ip", "10.235.228.64");
+		g_user.setHttpParam("version", "1");
+		g_user.setHttpParam("latitude ", "90");
+		g_user.setHttpParam("longitude", "100");
+		g_user.setHttpParam("serviceProvider", "cn");
+		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
+		
+		assertNotNull("返回结果为空",result);
+		try {
+			System.out.println("返回结果decode后 ：" + URLDecoder.decode(result.toString(), "utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String[] resultKeys = {"result", "s_ab", "params", "items"};
+		containKeys(resultKeys, result); //遍历result所有key结构
+		JSONArray itemsArray = result.getJSONArray("items");
+		JSONObject itemObject = itemsArray.getJSONObject(0);
+		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
+		containKeys(itemKeys, itemObject); //遍历items所有key结构
+		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
+		assertTrue("actionTitle值为空", !itemObject.getString("actionTitle").isEmpty());
+		assertTrue("actionUrl值为空", !itemObject.getString("actionUrl").isEmpty());
+		assertTrue("buttonActionUrl值为空", !itemObject.getString("buttonActionUrl").isEmpty());
+	}
+	
+	@Test(summary = "获取通知栏推荐music(小米音乐)的类型广告", expectedResults = "返回格式正确", index = 6)
+	public void testAdGetMusic() {
+		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("pid", "2");
+		g_user.setHttpParam("mainName", "mainName的值");
+		g_user.setHttpParam("recType", "music");
+		g_user.setHttpParam("sessionId", sessionId);
+		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
+		g_user.setHttpParam("packageName", "com.android.download");
+		g_user.setHttpParam("ip", "10.235.228.64");
+		g_user.setHttpParam("version", "1");
+		g_user.setHttpParam("latitude ", "90");
+		g_user.setHttpParam("longitude", "100");
+		g_user.setHttpParam("serviceProvider", "cn");
+		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
+		
+		assertNotNull("返回结果为空",result);
+		try {
+			System.out.println("返回结果decode后 ：" + URLDecoder.decode(result.toString(), "utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String[] resultKeys = {"result", "s_ab", "params", "items"};
+		containKeys(resultKeys, result); //遍历result所有key结构
+		JSONArray itemsArray = result.getJSONArray("items");
+		JSONObject itemObject = itemsArray.getJSONObject(0);
+		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
+		containKeys(itemKeys, itemObject); //遍历items所有key结构
+		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
+		assertTrue("actionTitle值为空", !itemObject.getString("actionTitle").isEmpty());
+		assertTrue("actionUrl值为空", !itemObject.getString("actionUrl").isEmpty());
+		assertTrue("buttonActionUrl值为空", !itemObject.getString("buttonActionUrl").isEmpty());
 	}
 	
 	private void containKeys(String[] keys, JSONObject json) {
