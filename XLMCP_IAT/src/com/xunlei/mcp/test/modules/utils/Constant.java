@@ -61,6 +61,7 @@ public class Constant {
 		public static String FILE_REQUESTUPLOAD = "file.requestUpload";
 		public static String FILE_REQUESTUPLOADCHUNK = "file.requestUploadChunk";
 		public static String FILE_SHARE = "file.share";
+		public static String SYNCAPPDIR_GET = "syncAppDir.get";
 	// ================================================================================
 
 	// ===========================Test模块接口名=======================================

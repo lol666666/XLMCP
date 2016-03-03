@@ -11,10 +11,12 @@ import com.xunlei.mcp.test.modules.utils.Constant;
 public class Share extends BaseCase {
 	@Test(summary = "分享小视频", expectedResults = "返回结果code=0", index = 1)
 	public void testShare() {
-		g_user.setHttpParam("gcid", "c7fd15307a64551c2a902a15f5c83627bc53a7ee");
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		String gcid = "fba58da370e1a02e9d3444a6afecc217a11e63e3";
+		
+		g_user.setHttpParam("gcid", gcid);
 		JSONObject result = g_user.postJsonResp(Constant.FILE_SHARE);
 		assertNotNull("返回结果为空", result);
-		assertEquals("点赞失败", 0, result.getInt("code"));
+		assertEquals("gcid错误", gcid, result.getString("gcid"));
+		assertTrue("点赞数错误", result.getInt("shareNum") > 0);
 	}
 }
