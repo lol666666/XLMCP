@@ -1,6 +1,7 @@
 package com.xunlei.mcp.test.cases.apple2.file;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 
@@ -13,9 +14,9 @@ import com.xunlei.mcp.test.modules.base.BaseCase;
 import com.xunlei.mcp.test.modules.utils.Constant;
 import com.xunlei.mcp.test.modules.utils.VideoUtils;
 
-public class RequestUpload extends BaseCase {
-	@Test(summary = "请求上传单个文件(未上传)", expectedResults = "需要上传，返回token", index = 1)
-	public void testRequest_New() {
+public class Commit extends BaseCase{
+	@Test(summary = "上传单个文件(未上传)", expectedResults = "上传成功，chunk=0", index = 1)
+	public void testCommit_New() {
 		String path = "res/TestUpload.mp4";
 		JSONArray files = new JSONArray();
 		JSONObject fileObject = new JSONObject();
@@ -29,19 +30,17 @@ public class RequestUpload extends BaseCase {
 
 		g_user.setHttpParam("uploadMethod", "user");
 		g_user.setHttpParam("files", files.toString());
-		JSONObject result = g_user.postJsonResp(Constant.FILE_REQUESTUPLOAD);
+		JSONObject result = g_user.postJsonResp(Constant.FILE_COMMIT);
 		assertNotNull("返回结果为空", result);
 		JSONArray dataArray = result.getJSONArray("data");
 		JSONObject dataObject = dataArray.getJSONObject(0);
 		assertEquals("gcid错误", gcid, dataObject.getString("gcid"));
-		assertEquals("status错误", "requireUpload",
-				dataObject.getString("status"));
-		assertTrue("uploadToken错误", !dataObject.getString("uploadToken")
-				.isEmpty());
+		assertEquals("chunk错误", 0, dataObject.getInt("chunk"));
+		assertEquals("status错误", "ok", dataObject.getString("status"));
 	}
-
-	@Test(summary = "请求上传单个文件(已上传)", expectedResults = "不需要上传，不返回token", index = 2)
-	public void testRequest_Already() {
+	
+	@Test(summary = "上传单个文件(已上传)", expectedResults = "上传成功，chunk=0", index = 2)
+	public void testCommit_Already() {
 		String path = "res/AlreadyUploaded.mp4";
 		JSONArray files = new JSONArray();
 		JSONObject fileObject = new JSONObject();
@@ -55,16 +54,17 @@ public class RequestUpload extends BaseCase {
 
 		g_user.setHttpParam("uploadMethod", "user");
 		g_user.setHttpParam("files", files.toString());
-		JSONObject result = g_user.postJsonResp(Constant.FILE_REQUESTUPLOAD);
+		JSONObject result = g_user.postJsonResp(Constant.FILE_COMMIT);
 		assertNotNull("返回结果为空", result);
 		JSONArray dataArray = result.getJSONArray("data");
 		JSONObject dataObject = dataArray.getJSONObject(0);
 		assertEquals("gcid错误", gcid, dataObject.getString("gcid"));
-		assertEquals("status错误", "uploaded", dataObject.getString("status"));
+		assertEquals("chunk错误", 0, dataObject.getInt("chunk"));
+		assertEquals("status错误", "ok", dataObject.getString("status"));
 	}
 	
-	@Test(summary = "请求上传两个文件", expectedResults = "返回结果正确", index = 3)
-	public void testRequest_2() {
+	@Test(summary = "上传两个文件", expectedResults = "上传成功", index = 3)
+	public void testCommit_2() {
 		String path1 = "res/AlreadyUploaded.mp4";
 		String path2 = "res/TestUpload.mp4";
 		JSONArray files = new JSONArray();
@@ -87,17 +87,16 @@ public class RequestUpload extends BaseCase {
 
 		g_user.setHttpParam("uploadMethod", "user");
 		g_user.setHttpParam("files", files.toString());
-		JSONObject result = g_user.postJsonResp(Constant.FILE_REQUESTUPLOAD);
+		JSONObject result = g_user.postJsonResp(Constant.FILE_COMMIT);
 		assertNotNull("返回结果为空", result);
 		JSONArray dataArray = result.getJSONArray("data");
 		JSONObject dataObject1 = dataArray.getJSONObject(0);
 		assertEquals("gcid错误", gcid1, dataObject1.getString("gcid"));
-		assertEquals("status错误", "uploaded", dataObject1.getString("status"));
+		assertEquals("chunk错误", 0, dataObject1.getInt("chunk"));
+		assertEquals("status错误", "ok", dataObject1.getString("status"));
 		JSONObject dataObject2 = dataArray.getJSONObject(1);
 		assertEquals("gcid错误", gcid2, dataObject2.getString("gcid"));
-		assertEquals("status错误", "requireUpload",
-				dataObject2.getString("status"));
-		assertTrue("uploadToken错误", !dataObject2.getString("uploadToken")
-				.isEmpty());
+		assertEquals("chunk错误", 0, dataObject2.getInt("chunk"));
+		assertEquals("status错误", "ok", dataObject2.getString("status"));
 	}
 }
