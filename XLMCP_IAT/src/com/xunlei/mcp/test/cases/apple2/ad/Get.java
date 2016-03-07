@@ -50,7 +50,7 @@ public class Get extends BaseCase {
 			assertTrue("targetType错误", itemObject.getInt("targetType") > 0);
 			assertTrue("缺少source字段", itemObject.containsKey("source"));
 			assertEquals("tagId错误", "1.23.a.1", itemObject.getString("tagId"));
-			assertEquals("template错误", "2.5", itemObject.getString("template"));
+			assertEquals("template错误", "2.6", itemObject.getString("template"));
 			assertTrue("sequence错误", itemObject.getInt("sequence") >= 0);
 		}
 	}
@@ -90,7 +90,7 @@ public class Get extends BaseCase {
 			assertTrue("targetType错误", itemObject.getInt("targetType") > 0);
 			assertTrue("缺少source字段", itemObject.containsKey("source"));
 			assertEquals("tagId错误", "1.23.a.1", itemObject.getString("tagId"));
-			assertEquals("template错误", "2.5", itemObject.getString("template"));
+			assertEquals("template错误", "2.6", itemObject.getString("template"));
 			assertTrue("sequence错误", itemObject.getInt("sequence") >= 0);
 		}
 	}
@@ -130,7 +130,7 @@ public class Get extends BaseCase {
 			assertTrue("targetType错误", itemObject.getInt("targetType") > 0);
 			assertTrue("缺少source字段", itemObject.containsKey("source"));
 			assertEquals("tagId错误", "1.23.a.1", itemObject.getString("tagId"));
-			assertEquals("template错误", "2.5", itemObject.getString("template"));
+			assertEquals("template错误", "2.6", itemObject.getString("template"));
 			assertTrue("sequence错误", itemObject.getInt("sequence") >= 0);
 		}
 	}

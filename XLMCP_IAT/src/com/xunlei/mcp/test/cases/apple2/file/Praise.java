@@ -11,7 +11,7 @@ import com.xunlei.mcp.test.modules.utils.Constant;
 public class Praise extends BaseCase {
 	@Test(summary = "对小视频第一次点赞", expectedResults = "点赞成功", index = 1)
 	public void testPraise_First() {
-		String gcid = "feb405e65611937cfc94992d7b4c00e75eb70d5c";
+		String gcid = "d62bc2553bea6d2c43dd471c926e03210ccbf008";
 		g_user.setHttpParam("gcid", gcid);
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
 		JSONObject result = g_user.postJsonResp(Constant.FILE_PRAISE);
