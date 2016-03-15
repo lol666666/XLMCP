@@ -17,6 +17,13 @@ import org.junit.Test;
 import com.xunlei.mcp.test.modules.base.BaseCase;
 import com.xunlei.mcp.test.modules.utils.Constant;
 
+/*
+ * 新增了4个必选参数
+ * ext_infoHash //bt任务上传infoHash
+ * aes_url //aes加密的url
+ * ext_versionCode //客户端 ui的versionCode
+ * ext_packageName //文件包名
+ */
 public class Get extends BaseCase{
 	String sessionId = String.valueOf(new Date().getTime());
 	
@@ -24,18 +31,20 @@ public class Get extends BaseCase{
 	public void testAdGetApp() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
 		g_user.setHttpParam("pid", "2");
-		g_user.setHttpParam("mainName", "mainName的值");
+		g_user.setHttpParam("mainName", "青狐传说");
 		g_user.setHttpParam("recType", "app");
 		g_user.setHttpParam("sessionId", sessionId);
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
-		g_user.setHttpParam("packageName", "com.android.download");
 		g_user.setHttpParam("ip", "10.235.228.64");
 		g_user.setHttpParam("version", "1");
 		g_user.setHttpParam("latitude ", "90");
 		g_user.setHttpParam("longitude", "100");
 		g_user.setHttpParam("serviceProvider", "cn");
+		g_user.setHttpParam("ext_infoHash", " ");		
+		g_user.setHttpParam("aes_url", "KvQ1xSMUCu3nidCrL+UFHjQvQGYi1jhPHWK1cSQPrUDUUsefNdpJeuKcRVkVdezs9QMKw1lkXzLZ14tNXZg7RCkaO3CFiPAXZDtblry/Ekqh7/FlIjwXZcb0CDOEOszWZRLM+QoxGUnGZRhbn/PRK8Kb1tJnkjsFI/rbiz1jy/XnaflL+AiTpZZB2Nw5z45jlvoVj60JcsBcjyTA3rBwz0FDvbD+1J9s7fuKKm+93WLi1lEzswf3+f+g1SYcoYP0cDtlCj69XBG7K8eiq/n3UA==");
+		g_user.setHttpParam("ext_versionCode", "60311002");
+		g_user.setHttpParam("ext_packageName", "com.zlongame.qqh.mi");
 		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
-		
 		assertNotNull("返回结果为空",result);
 		try {
 			System.out.println("返回结果decode后 ：" + URLDecoder.decode(result.toString(), "utf-8"));
@@ -43,10 +52,9 @@ public class Get extends BaseCase{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String[] resultKeys = {"result", "s_ab", "params", "items"};
+		String[] resultKeys = {"result", "s_ab", "params", "item"};
 		containKeys(resultKeys, result); //遍历result所有key结构
-		JSONArray itemsArray = result.getJSONArray("items");
-		JSONObject itemObject = itemsArray.getJSONObject(0);
+		JSONObject itemObject = result.getJSONObject("item");
 		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
 		containKeys(itemKeys, itemObject); //遍历items所有key结构
 		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
@@ -59,16 +67,19 @@ public class Get extends BaseCase{
 	public void testAdGetOwn() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
 		g_user.setHttpParam("pid", "2");
-		g_user.setHttpParam("mainName", "mainName的值");
+		g_user.setHttpParam("mainName", "青狐");
 		g_user.setHttpParam("recType", "own");
 		g_user.setHttpParam("sessionId", sessionId);
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
-		g_user.setHttpParam("packageName", "com.android.download");
 		g_user.setHttpParam("ip", "10.235.228.64");
 		g_user.setHttpParam("version", "1");
 		g_user.setHttpParam("latitude ", "90");
 		g_user.setHttpParam("longitude", "100");
 		g_user.setHttpParam("serviceProvider", "cn");
+		g_user.setHttpParam("ext_infoHash", "373EF2BAEFA1698B73163E1F8B3139F3F5D5A53A"); 		
+		g_user.setHttpParam("aes_url", "1Q0zCSvqSC+46e7h6tMFDmluNxyQ4PPkGITgn/CYEOlm7MoODzWXLNKOS9npHs+tKNVMavmPPKuaF24E73ZQGw==");
+		g_user.setHttpParam("ext_versionCode", "60311002");
+		g_user.setHttpParam("ext_packageName", " ");
 		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
 		
 		assertNotNull("返回结果为空",result);
@@ -78,10 +89,9 @@ public class Get extends BaseCase{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String[] resultKeys = {"result", "s_ab", "params", "items"};
+		String[] resultKeys = {"result", "s_ab", "params", "item"};
 		containKeys(resultKeys, result); //遍历result所有key结构
-		JSONArray itemsArray = result.getJSONArray("items");
-		JSONObject itemObject = itemsArray.getJSONObject(0);
+		JSONObject itemObject = result.getJSONObject("item");
 		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
 		containKeys(itemKeys, itemObject); //遍历items所有key结构
 		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
@@ -98,12 +108,15 @@ public class Get extends BaseCase{
 		g_user.setHttpParam("recType", "video");
 		g_user.setHttpParam("sessionId", sessionId);
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
-		g_user.setHttpParam("packageName", "com.android.download");
 		g_user.setHttpParam("ip", "10.235.228.64");
 		g_user.setHttpParam("version", "1");
 		g_user.setHttpParam("latitude ", "90");
 		g_user.setHttpParam("longitude", "100");
 		g_user.setHttpParam("serviceProvider", "cn");
+		g_user.setHttpParam("ext_infoHash", " "); 		
+		g_user.setHttpParam("aes_url", " ");
+		g_user.setHttpParam("ext_versionCode", "60311002");
+		g_user.setHttpParam("ext_packageName", " ");
 		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
 		
 		assertNotNull("返回结果为空",result);
@@ -113,10 +126,9 @@ public class Get extends BaseCase{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String[] resultKeys = {"result", "s_ab", "params", "items"};
+		String[] resultKeys = {"result", "s_ab", "params", "item"};
 		containKeys(resultKeys, result); //遍历result所有key结构
-		JSONArray itemsArray = result.getJSONArray("items");
-		JSONObject itemObject = itemsArray.getJSONObject(0);
+		JSONObject itemObject = result.getJSONObject("item");
 		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
 		containKeys(itemKeys, itemObject); //遍历items所有key结构
 		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
@@ -134,12 +146,15 @@ public class Get extends BaseCase{
 		g_user.setHttpParam("recType", "other");
 		g_user.setHttpParam("sessionId", sessionId);
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
-		g_user.setHttpParam("packageName", "com.android.download");
 		g_user.setHttpParam("ip", "10.235.228.64");
 		g_user.setHttpParam("version", "1");
 		g_user.setHttpParam("latitude ", "90");
 		g_user.setHttpParam("longitude", "100");
 		g_user.setHttpParam("serviceProvider", "cn");
+		g_user.setHttpParam("ext_infoHash", " "); 		
+		g_user.setHttpParam("aes_url", " ");
+		g_user.setHttpParam("ext_versionCode", "60311002");
+		g_user.setHttpParam("ext_packageName", " ");
 		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
 		
 		assertNotNull("返回结果为空",result);
@@ -149,10 +164,9 @@ public class Get extends BaseCase{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String[] resultKeys = {"result", "s_ab", "params", "items"};
+		String[] resultKeys = {"result", "s_ab", "params", "item"};
 		containKeys(resultKeys, result); //遍历result所有key结构
-		JSONArray itemsArray = result.getJSONArray("items");
-		JSONObject itemObject = itemsArray.getJSONObject(0);
+		JSONObject itemObject = result.getJSONObject("item");
 		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
 		containKeys(itemKeys, itemObject); //遍历items所有key结构
 		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
@@ -170,12 +184,15 @@ public class Get extends BaseCase{
 		g_user.setHttpParam("recType", "game");
 		g_user.setHttpParam("sessionId", sessionId);
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
-		g_user.setHttpParam("packageName", "com.android.download");
 		g_user.setHttpParam("ip", "10.235.228.64");
 		g_user.setHttpParam("version", "1");
 		g_user.setHttpParam("latitude ", "90");
 		g_user.setHttpParam("longitude", "100");
 		g_user.setHttpParam("serviceProvider", "cn");
+		g_user.setHttpParam("ext_infoHash", " "); 		
+		g_user.setHttpParam("aes_url", " ");
+		g_user.setHttpParam("ext_versionCode", "60311002");
+		g_user.setHttpParam("ext_packageName", " ");
 		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
 		
 		assertNotNull("返回结果为空",result);
@@ -185,10 +202,9 @@ public class Get extends BaseCase{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String[] resultKeys = {"result", "s_ab", "params", "items"};
+		String[] resultKeys = {"result", "s_ab", "params", "item"};
 		containKeys(resultKeys, result); //遍历result所有key结构
-		JSONArray itemsArray = result.getJSONArray("items");
-		JSONObject itemObject = itemsArray.getJSONObject(0);
+		JSONObject itemObject = result.getJSONObject("item");
 		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
 		containKeys(itemKeys, itemObject); //遍历items所有key结构
 		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
@@ -205,12 +221,15 @@ public class Get extends BaseCase{
 		g_user.setHttpParam("recType", "music");
 		g_user.setHttpParam("sessionId", sessionId);
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
-		g_user.setHttpParam("packageName", "com.android.download");
 		g_user.setHttpParam("ip", "10.235.228.64");
 		g_user.setHttpParam("version", "1");
 		g_user.setHttpParam("latitude ", "90");
 		g_user.setHttpParam("longitude", "100");
 		g_user.setHttpParam("serviceProvider", "cn");
+		g_user.setHttpParam("ext_infoHash", " "); 		
+		g_user.setHttpParam("aes_url", " ");
+		g_user.setHttpParam("ext_versionCode", "60311002");
+		g_user.setHttpParam("ext_packageName", " ");
 		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
 		
 		assertNotNull("返回结果为空",result);
@@ -220,10 +239,9 @@ public class Get extends BaseCase{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String[] resultKeys = {"result", "s_ab", "params", "items"};
+		String[] resultKeys = {"result", "s_ab", "params", "item"};
 		containKeys(resultKeys, result); //遍历result所有key结构
-		JSONArray itemsArray = result.getJSONArray("items");
-		JSONObject itemObject = itemsArray.getJSONObject(0);
+		JSONObject itemObject = result.getJSONObject("item");
 		String[] itemKeys = {"type", "iconUrl", "title", "des", "actionTitle", "actionUrl", "buttonActionUrl", "extData"};
 		containKeys(itemKeys, itemObject); //遍历items所有key结构
 		assertTrue("title值为空", !itemObject.getString("title").isEmpty());
