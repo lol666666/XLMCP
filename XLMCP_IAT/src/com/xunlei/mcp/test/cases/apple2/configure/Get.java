@@ -12,7 +12,7 @@ public class Get extends BaseCase {
 	@Test(summary = "获取云控配置", expectedResults = "返回结果格式正确", index = 1)
 	public void testConfigGet() {
 		g_user.setHttpParam("guid", Constant.DEVICE_ID);
-		g_user.setHttpParam("appVersion", "1.0");
+		g_user.setHttpParam("appVersion", "1.7.0");
 		JSONObject result = g_user.postJsonResp(Constant.CONFIGURE_GET);
 		assertNotNull("返回结果为空", result);
 		String dataString = result.getString("data");
@@ -27,8 +27,6 @@ public class Get extends BaseCase {
 			assertTrue("network_type为空", !adObject.get("network_type")
 					.toString().isEmpty());
 		}
-		assertTrue("miui_version为空", !dataObject.getString("miui_version")
-				.isEmpty());
 		assertTrue("show_hot_expression为空",
 				!dataObject.getString("show_hot_expression").isEmpty());
 		assertTrue("scan_batch_size错误",

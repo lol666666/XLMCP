@@ -7,7 +7,6 @@ import java.util.Date;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xunlei.mcp.test.modules.base.BaseCase;
@@ -16,7 +15,7 @@ import com.xunlei.mcp.test.modules.utils.Constant;
 public class Get extends BaseCase {
 	String sessionId = String.valueOf(new Date().getTime());
 
-	@Test(summary = "获取视频推荐广告（首次进入）", expectedResults = "返回结果格式正确", index = 1)
+	@Test(summary = "获取视频推荐广告（首次进入）", expectedResults = "返回结果格式正确，广告位置5", index = 1)
 	public void testAdGet1() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
 		g_user.setHttpParam("pid", "4");
@@ -55,7 +54,7 @@ public class Get extends BaseCase {
 		}
 	}
 
-	@Test(summary = "获取视频推荐广告（下拉刷新）", expectedResults = "返回结果格式正确", index = 1)
+	@Test(summary = "获取视频推荐广告（下拉刷新）", expectedResults = "返回结果格式正确，广告位置5-8", index = 2)
 	public void testAdGet2() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
 		g_user.setHttpParam("pid", "4");
@@ -95,7 +94,7 @@ public class Get extends BaseCase {
 		}
 	}
 
-	@Test(summary = "获取视频推荐广告（加载更多）", expectedResults = "返回结果格式正确", index = 1)
+	@Test(summary = "获取视频推荐广告（加载更多）", expectedResults = "返回结果格式正确，广告位置9-10", index = 3)
 	public void testAdGet3() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
 		g_user.setHttpParam("pid", "4");
@@ -135,17 +134,153 @@ public class Get extends BaseCase {
 		}
 	}
 
-	@Ignore
-	@Test(summary = "获取表情推荐广告（必选参数）", expectedResults = "返回结果格式正确", index = 2)
-	public void testAdGet_Expression() {
+	@Test(summary = "获取表情推荐广告（首次进入）", expectedResults = "返回结果格式正确，广告位置2", index = 4)
+	public void testAdGet4() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
 		g_user.setHttpParam("pid", "5");
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
-		g_user.setHttpParam("recType", "expression");
+		g_user.setHttpParam("recType", "emoji");
 		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
-		g_user.setHttpParam("ext_adsCount", "1");
+		g_user.setHttpParam("ext_loadType", "firstLoad");
+		g_user.setHttpParam("ext_page", "1");
+		g_user.setHttpParam("ext_appVersion", "1.7.1");
 		g_user.setHttpParam("ext_platform", "android");
 		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
 		assertNotNull("返回结果为空", result);
+		assertNotNull("返回结果为空", result);
+		assertEquals("广告请求失败", 0000, result.getInt("result"));
+		assertTrue("缺少recId字段", result.containsKey("recId"));
+		assertTrue("缺少ruleId字段", result.containsKey("ruleId"));
+		assertTrue("s_ab为空", !result.getString("s_ab").isEmpty());
+		JSONObject paramsObject = result.getJSONObject("params");
+		assertTrue("title为空", !paramsObject.getString("title").isEmpty());
+		assertTrue("shareUser为空", !paramsObject.getString("shareUser").isEmpty());
+		assertTrue("des为空", !paramsObject.getString("des").isEmpty());
+		assertTrue("缺少ts字段", paramsObject.containsKey("ts"));
+		// 验证广告位置
+		int position = paramsObject.getInt("position");
+		assertTrue("广告位置错误", position == 2);
+		JSONArray itemArray = result.getJSONArray("items");
+		for (int i = 0; i < itemArray.size(); i++) {
+			JSONObject itemObject = itemArray.getJSONObject(i);
+			assertTrue("packageName错误", !itemObject.getString("packageName")
+					.isEmpty());
+			assertTrue("title错误", !itemObject.getString("title")
+					.isEmpty());
+			assertTrue("缺少des字段", itemObject.containsKey("des"));
+			assertTrue("缺少bgImage字段", itemObject.containsKey("bgImage"));
+			assertTrue("actionUrl错误", !itemObject.getString("actionUrl")
+					.isEmpty());
+			assertTrue("appId错误", itemObject.getInt("appId") != 0);
+			assertTrue("actionUrl错误", !itemObject.getString("actionUrl")
+					.isEmpty());
+			assertTrue("categoryName错误", !itemObject.getString("categoryName")
+					.isEmpty());
+			assertTrue("apkSize错误", itemObject.getLong("apkSize") != 0);
+			assertTrue("adType错误", itemObject.getLong("adType") != 0);
+			assertTrue("adId错误", itemObject.getInt("adId") != 0);
+			assertTrue("缺少md5字段", itemObject.containsKey("md5"));
+			assertTrue("缺少extData字段", itemObject.containsKey("extData"));
+		}
+	}
+	
+	@Test(summary = "获取表情推荐广告（下拉刷新）", expectedResults = "返回结果格式正确，广告位置2-5", index = 5)
+	public void testAdGet5() {
+		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("pid", "5");
+		g_user.setHttpParam("mainName", "com.android.fileexplorer");
+		g_user.setHttpParam("recType", "emoji");
+		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
+		g_user.setHttpParam("ext_loadType", "refresh");
+		g_user.setHttpParam("ext_page", "1");
+		g_user.setHttpParam("ext_appVersion", "1.7.1");
+		g_user.setHttpParam("ext_platform", "android");
+		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
+		assertNotNull("返回结果为空", result);
+		assertNotNull("返回结果为空", result);
+		assertEquals("广告请求失败", 0000, result.getInt("result"));
+		assertTrue("缺少recId字段", result.containsKey("recId"));
+		assertTrue("缺少ruleId字段", result.containsKey("ruleId"));
+		assertTrue("s_ab为空", !result.getString("s_ab").isEmpty());
+		JSONObject paramsObject = result.getJSONObject("params");
+		assertTrue("title为空", !paramsObject.getString("title").isEmpty());
+		assertTrue("shareUser为空", !paramsObject.getString("shareUser").isEmpty());
+		assertTrue("des为空", !paramsObject.getString("des").isEmpty());
+		assertTrue("缺少ts字段", paramsObject.containsKey("ts"));
+		// 验证广告位置
+		int position = paramsObject.getInt("position");
+		assertTrue("广告位置错误", 2 <= position && position <= 5);
+		JSONArray itemArray = result.getJSONArray("items");
+		for (int i = 0; i < itemArray.size(); i++) {
+			JSONObject itemObject = itemArray.getJSONObject(i);
+			assertTrue("packageName错误", !itemObject.getString("packageName")
+					.isEmpty());
+			assertTrue("title错误", !itemObject.getString("title")
+					.isEmpty());
+			assertTrue("缺少des字段", itemObject.containsKey("des"));
+			assertTrue("缺少bgImage字段", itemObject.containsKey("bgImage"));
+			assertTrue("actionUrl错误", !itemObject.getString("actionUrl")
+					.isEmpty());
+			assertTrue("appId错误", itemObject.getInt("appId") != 0);
+			assertTrue("actionUrl错误", !itemObject.getString("actionUrl")
+					.isEmpty());
+			assertTrue("categoryName错误", !itemObject.getString("categoryName")
+					.isEmpty());
+			assertTrue("apkSize错误", itemObject.getLong("apkSize") != 0);
+			assertTrue("adType错误", itemObject.getLong("adType") != 0);
+			assertTrue("adId错误", itemObject.getInt("adId") != 0);
+			assertTrue("缺少md5字段", itemObject.containsKey("md5"));
+			assertTrue("缺少extData字段", itemObject.containsKey("extData"));
+		}
+	}
+	
+	@Test(summary = "获取表情推荐广告（加载更多）", expectedResults = "返回结果格式正确，广告位置8-10", index = 6)
+	public void testAdGet6() {
+		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("pid", "5");
+		g_user.setHttpParam("mainName", "com.android.fileexplorer");
+		g_user.setHttpParam("recType", "emoji");
+		g_user.setHttpParam("timeTick", String.valueOf(new Date().getTime()));
+		g_user.setHttpParam("ext_loadType", "loadMore");
+		g_user.setHttpParam("ext_page", "2");
+		g_user.setHttpParam("ext_appVersion", "1.7.1");
+		g_user.setHttpParam("ext_platform", "android");
+		JSONObject result = g_user.postJsonResp(Constant.AD_GET);
+		assertNotNull("返回结果为空", result);
+		assertNotNull("返回结果为空", result);
+		assertEquals("广告请求失败", 0000, result.getInt("result"));
+		assertTrue("缺少recId字段", result.containsKey("recId"));
+		assertTrue("缺少ruleId字段", result.containsKey("ruleId"));
+		assertTrue("s_ab为空", !result.getString("s_ab").isEmpty());
+		JSONObject paramsObject = result.getJSONObject("params");
+		assertTrue("title为空", !paramsObject.getString("title").isEmpty());
+		assertTrue("shareUser为空", !paramsObject.getString("shareUser").isEmpty());
+		assertTrue("des为空", !paramsObject.getString("des").isEmpty());
+		assertTrue("缺少ts字段", paramsObject.containsKey("ts"));
+		// 验证广告位置
+		int position = paramsObject.getInt("position");
+		assertTrue("广告位置错误", 8 <= position && position <= 10);
+		JSONArray itemArray = result.getJSONArray("items");
+		for (int i = 0; i < itemArray.size(); i++) {
+			JSONObject itemObject = itemArray.getJSONObject(i);
+			assertTrue("packageName错误", !itemObject.getString("packageName")
+					.isEmpty());
+			assertTrue("title错误", !itemObject.getString("title")
+					.isEmpty());
+			assertTrue("缺少des字段", itemObject.containsKey("des"));
+			assertTrue("缺少bgImage字段", itemObject.containsKey("bgImage"));
+			assertTrue("actionUrl错误", !itemObject.getString("actionUrl")
+					.isEmpty());
+			assertTrue("appId错误", itemObject.getInt("appId") != 0);
+			assertTrue("actionUrl错误", !itemObject.getString("actionUrl")
+					.isEmpty());
+			assertTrue("categoryName错误", !itemObject.getString("categoryName")
+					.isEmpty());
+			assertTrue("apkSize错误", itemObject.getLong("apkSize") != 0);
+			assertTrue("adType错误", itemObject.getLong("adType") != 0);
+			assertTrue("adId错误", itemObject.getInt("adId") != 0);
+			assertTrue("缺少md5字段", itemObject.containsKey("md5"));
+			assertTrue("缺少extData字段", itemObject.containsKey("extData"));
+		}
 	}
 }

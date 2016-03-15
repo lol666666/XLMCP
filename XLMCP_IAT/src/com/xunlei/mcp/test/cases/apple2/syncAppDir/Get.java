@@ -27,8 +27,7 @@ public class Get extends BaseCase {
 			assertTrue("缺少enAppName参数", appsObject.containsKey("enAppName"));
 			assertTrue("缺少twAppName参数", appsObject.containsKey("twAppName"));
 			assertTrue("缺少appTag参数", appsObject.containsKey("appTag"));
-			assertTrue("appIcon错误", !appsObject.getString("appIcon")
-					.isEmpty());
+			assertTrue("appIcon错误", !appsObject.getString("appIcon").isEmpty());
 			assertTrue("groupName错误", !appsObject.getString("groupName")
 					.isEmpty());
 		}
@@ -40,15 +39,29 @@ public class Get extends BaseCase {
 			assertTrue("dirName错误", !appDirsObject.getString("dirName")
 					.isEmpty());
 			assertTrue("dirType错误", appDirsObject.getInt("dirType") >= 0);
-			assertTrue("缺少subDirFlag参数", appDirsObject.containsKey("subDirFlag"));
-			assertTrue("缺少subDirName参数", appDirsObject.containsKey("subDirName"));
-			assertTrue("缺少directName参数", appDirsObject.containsKey("directName"));
-			assertTrue("缺少newDirectName参数", appDirsObject.containsKey("newDirectName"));
-			assertTrue("缺少enDirectName参数", appDirsObject.containsKey("enDirectName"));
-			assertTrue("缺少twDirectName参数", appDirsObject.containsKey("twDirectName"));
+			assertTrue("缺少subDirFlag参数",
+					appDirsObject.containsKey("subDirFlag"));
+			assertTrue("缺少subDirName参数",
+					appDirsObject.containsKey("subDirName"));
+			assertTrue("缺少directName参数",
+					appDirsObject.containsKey("directName"));
+			assertTrue("缺少newDirectName参数",
+					appDirsObject.containsKey("newDirectName"));
+			assertTrue("缺少enDirectName参数",
+					appDirsObject.containsKey("enDirectName"));
+			assertTrue("缺少twDirectName参数",
+					appDirsObject.containsKey("twDirectName"));
 			assertTrue("缺少appDirTag参数", appDirsObject.containsKey("appDirTag"));
-			assertTrue("state错误", appDirsObject.getString("state").equals("enable") || appDirsObject.getString("state").equals("disable"));
-			assertTrue("notification错误", appDirsObject.getString("notification").equals("enable") || appDirsObject.getString("notification").equals("disable"));
+			assertTrue(
+					"state错误",
+					appDirsObject.getString("state").equals("enable")
+							|| appDirsObject.getString("state").equals(
+									"disable"));
+			assertTrue("notification错误", appDirsObject
+					.getString("notification").equals("enable")
+					|| appDirsObject.getString("notification")
+							.equals("disable"));
 		}
+		assertTrue("maxOpver错误", !resultObject.getString("maxOpver").isEmpty());
 	}
 }

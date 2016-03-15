@@ -16,7 +16,7 @@ import com.xunlei.mcp.test.modules.utils.Constant;
 import com.xunlei.mcp.test.modules.utils.VideoUtils;
 
 public class CommitChunk extends BaseCase{
-	@Test(summary = "请求上传单个文件(未上传)", expectedResults = "上传失败，返回错误信息", index = 1)
+	@Test(summary = "分chunk上传单个文件(未上传)", expectedResults = "上传失败，返回错误信息", index = 1)
 	public void testCommitChunk_New() {
 		String path = "res/TestUpload.mp4";
 		JSONArray files = new JSONArray();
@@ -42,7 +42,7 @@ public class CommitChunk extends BaseCase{
 				.isEmpty());
 	}
 		
-	@Test(summary = "请求上传单个文件(已上传)", expectedResults = "上传失败，返回错误信息", index = 2)
+	@Test(summary = "分chunk上传单个文件(已上传)", expectedResults = "上传失败，返回错误信息", index = 2)
 	public void testCommitChunk_Already() {
 		String path = "res/AlreadyUploaded.mp4";
 		JSONArray files = new JSONArray();

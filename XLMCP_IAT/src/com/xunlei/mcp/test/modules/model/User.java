@@ -32,7 +32,8 @@ public class User {
 	private String user_post_url;
 	public Map<String, String> http_param;
 	
-	public static final String appSecretKey = "bbmCaaacHJnLTydddKrLLUGLddagYRA";
+//	public static final String appSecretKey = "bbmCaaacHJnLTydddKrLLUGLddagYRA";
+	public static final String appSecretKey = "jXJhmCwAcHJnLTyQuKrLLUGLZexjZbqI";
 	private String loginSecretKey;
 
 	private String platform = Configuration.loadProperties().getProperty(

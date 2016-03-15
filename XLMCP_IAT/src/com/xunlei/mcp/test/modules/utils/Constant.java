@@ -13,7 +13,7 @@ public class Constant {
 	public static String ONLINE_URL = "http://api.xlmc.sandai.net/api";
 	public static String MIUI_ONLINE_URL = "http://api.xlmc.sec.miui.com/api";
 
-	public static String APP_ID = "1";
+	public static String APP_ID = "3";
 	public static String VERSION = "1.0";
 	public static String DEVICE_ID = "12f3e4c5b67d89a0";
 	public static String IMEI = "826591573629026400";

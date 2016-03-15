@@ -12,10 +12,10 @@ import com.xunlei.mcp.test.modules.utils.Constant;
 public class List extends BaseCase {
 	@Test(summary = "获取表情组列表(下拉刷新)", expectedResults = "返回结果格式正确", index = 1)
 	public void testExpList_Refresh() {
-		g_user.setHttpParam("lastId", "500");
+		g_user.setHttpParam("lastId", "1:92_2:-1_3:-1");
 		g_user.setHttpParam("pageSize", "10");
 		g_user.setHttpParam("type", "refresh");
-		g_user.setHttpParam("version", "0");
+		g_user.setHttpParam("version", "1.1");
 		JSONObject result = g_user.postJsonResp(Constant.EXPRESSION_LIST);
 		assertNotNull("返回结果为空", result);
 		JSONArray dataArray = result.getJSONArray("data");
@@ -41,10 +41,10 @@ public class List extends BaseCase {
 	
 	@Test(summary = "获取表情组列表(加载更多)", expectedResults = "返回结果格式正确", index = 2)
 	public void testExpList_Loadmore() {
-		g_user.setHttpParam("lastId", "600");
+		g_user.setHttpParam("lastId", "1:92_2:-1_3:-1");
 		g_user.setHttpParam("pageSize", "10");
 		g_user.setHttpParam("type", "loadmore");
-		g_user.setHttpParam("version", "0");
+		g_user.setHttpParam("version", "1.1");
 		JSONObject result = g_user.postJsonResp(Constant.EXPRESSION_LIST);
 		assertNotNull("返回结果为空", result);
 		JSONArray dataArray = result.getJSONArray("data");
