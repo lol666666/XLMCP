@@ -18,9 +18,7 @@ public class Constant {
 	public static String DEVICE_ID = "12f3e4c5b67d89a0";
 	public static String IMEI = "826591573629026400";
 	public static String MAC = "000EC6C0BF8F";
-	
-	public static String AES_PASSWORD = "jXJhmCwAcHJnLTyQuKrLLUGLZexjZbqI";
-	// ===============================================================================
+		// ===============================================================================
 
 	// ===================================测试环境帐号信息==================================
 

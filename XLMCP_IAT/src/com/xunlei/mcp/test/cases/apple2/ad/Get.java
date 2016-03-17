@@ -116,7 +116,7 @@ public class Get extends BaseCase {
 		JSONObject paramsObject = result.getJSONObject("params");
 		// 验证广告位置
 		int position = paramsObject.getInt("position");
-		assertTrue("广告位置错误", 9 <= position && position <= 10);
+		assertTrue("广告位置错误", 7 <= position && position <= 8);
 		JSONArray itemArray = result.getJSONArray("items");
 		for (int i = 0; i < itemArray.size(); i++) {
 			JSONObject itemObject = itemArray.getJSONObject(i);
@@ -260,7 +260,7 @@ public class Get extends BaseCase {
 		assertTrue("缺少ts字段", paramsObject.containsKey("ts"));
 		// 验证广告位置
 		int position = paramsObject.getInt("position");
-		assertTrue("广告位置错误", 8 <= position && position <= 10);
+		assertTrue("广告位置错误", 6 <= position && position <= 8);
 		JSONArray itemArray = result.getJSONArray("items");
 		for (int i = 0; i < itemArray.size(); i++) {
 			JSONObject itemObject = itemArray.getJSONObject(i);
