@@ -29,4 +29,34 @@ public class Praise extends BaseCase {
 		assertNotNull("返回结果为空", result);
 		assertEquals("点赞数错误", 0, result.getInt("praiseNum"));
 	}
+	
+	@Test(summary = "添加统计portalStyle=1", expectedResults = "返回结果无异常", index = 3)
+	public void testPraise_Stat1() {
+		g_user.setHttpParam("gcid", "8f51802c7bbd9aef12d978433a89ee704a83d6e6");
+		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("portalStyle", "1");
+		JSONObject result = g_user.postJsonResp(Constant.FILE_PRAISE);
+		assertNotNull("返回结果为空", result);
+		assertEquals("点赞数错误", 0, result.getInt("praiseNum"));
+	}
+	
+	@Test(summary = "添加统计portalStyle=2", expectedResults = "返回结果无异常", index = 4)
+	public void testPraise_Stat2() {
+		g_user.setHttpParam("gcid", "8f51802c7bbd9aef12d978433a89ee704a83d6e6");
+		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("portalStyle", "2");
+		JSONObject result = g_user.postJsonResp(Constant.FILE_PRAISE);
+		assertNotNull("返回结果为空", result);
+		assertEquals("点赞数错误", 0, result.getInt("praiseNum"));
+	}
+	
+	@Test(summary = "添加统计portalStyle=3", expectedResults = "返回结果无异常", index = 5)
+	public void testPraise_Stat3() {
+		g_user.setHttpParam("gcid", "8f51802c7bbd9aef12d978433a89ee704a83d6e6");
+		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("portalStyle", "3");
+		JSONObject result = g_user.postJsonResp(Constant.FILE_PRAISE);
+		assertNotNull("返回结果为空", result);
+		assertEquals("点赞数错误", 0, result.getInt("praiseNum"));
+	}
 }

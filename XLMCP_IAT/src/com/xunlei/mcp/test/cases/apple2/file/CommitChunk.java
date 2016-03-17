@@ -67,4 +67,85 @@ public class CommitChunk extends BaseCase{
 		assertTrue("errorMessage错误", !dataObject.getString("errorMessage")
 				.isEmpty());
 	}
+	
+	@Test(summary = "添加统计参数portalStyle=1", expectedResults = "返回结果无异常", index = 3)
+	public void testCommitChunk_Stat1() {
+		String path = "res/AlreadyUploaded.mp4";
+		JSONArray files = new JSONArray();
+		JSONObject fileObject = new JSONObject();
+		String gcid = VideoUtils.calcGcid(path);
+
+		fileObject.put("gcid", gcid);
+		fileObject.put("path", path);
+		fileObject.put("size", new File(path).length());
+		fileObject.put("createTime", new File(path).lastModified());
+		files.add(fileObject);
+
+		g_user.setHttpParam("uploadMethod", "user");
+		g_user.setHttpParam("files", files.toString());
+		g_user.setHttpParam("portalStyle", "1");
+		JSONObject result = g_user.postJsonResp(Constant.FILE_COMMITCHUNK);
+		assertNotNull("返回结果为空", result);
+		JSONArray dataArray = result.getJSONArray("data");
+		JSONObject dataObject = dataArray.getJSONObject(0);
+		assertEquals("gcid错误", gcid, dataObject.getString("gcid"));
+		assertEquals("chunk错误", 0, dataObject.getInt("chunk"));
+		assertEquals("status错误", "fail", dataObject.getString("status"));
+		assertTrue("errorMessage错误", !dataObject.getString("errorMessage")
+				.isEmpty());
+	}
+	
+	@Test(summary = "添加统计参数portalStyle=2", expectedResults = "返回结果无异常", index = 4)
+	public void testCommitChunk_Stat2() {
+		String path = "res/AlreadyUploaded.mp4";
+		JSONArray files = new JSONArray();
+		JSONObject fileObject = new JSONObject();
+		String gcid = VideoUtils.calcGcid(path);
+
+		fileObject.put("gcid", gcid);
+		fileObject.put("path", path);
+		fileObject.put("size", new File(path).length());
+		fileObject.put("createTime", new File(path).lastModified());
+		files.add(fileObject);
+
+		g_user.setHttpParam("uploadMethod", "user");
+		g_user.setHttpParam("files", files.toString());
+		g_user.setHttpParam("portalStyle", "2");
+		JSONObject result = g_user.postJsonResp(Constant.FILE_COMMITCHUNK);
+		assertNotNull("返回结果为空", result);
+		JSONArray dataArray = result.getJSONArray("data");
+		JSONObject dataObject = dataArray.getJSONObject(0);
+		assertEquals("gcid错误", gcid, dataObject.getString("gcid"));
+		assertEquals("chunk错误", 0, dataObject.getInt("chunk"));
+		assertEquals("status错误", "fail", dataObject.getString("status"));
+		assertTrue("errorMessage错误", !dataObject.getString("errorMessage")
+				.isEmpty());
+	}
+	
+	@Test(summary = "添加统计参数portalStyle=3", expectedResults = "返回结果无异常", index = 5)
+	public void testCommitChunk_Stat3() {
+		String path = "res/AlreadyUploaded.mp4";
+		JSONArray files = new JSONArray();
+		JSONObject fileObject = new JSONObject();
+		String gcid = VideoUtils.calcGcid(path);
+
+		fileObject.put("gcid", gcid);
+		fileObject.put("path", path);
+		fileObject.put("size", new File(path).length());
+		fileObject.put("createTime", new File(path).lastModified());
+		files.add(fileObject);
+
+		g_user.setHttpParam("uploadMethod", "user");
+		g_user.setHttpParam("files", files.toString());
+		g_user.setHttpParam("portalStyle", "3");
+		JSONObject result = g_user.postJsonResp(Constant.FILE_COMMITCHUNK);
+		assertNotNull("返回结果为空", result);
+		JSONArray dataArray = result.getJSONArray("data");
+		JSONObject dataObject = dataArray.getJSONObject(0);
+		assertEquals("gcid错误", gcid, dataObject.getString("gcid"));
+		assertEquals("chunk错误", 0, dataObject.getInt("chunk"));
+		assertEquals("status错误", "fail", dataObject.getString("status"));
+		assertTrue("errorMessage错误", !dataObject.getString("errorMessage")
+				.isEmpty());
+	}
 }

@@ -45,8 +45,9 @@ public class Constant {
 		public static String AD_GET = "ad.get";
 		public static String AD_TRACK = "ad.track";
 		public static String AD_GETWECHATFACEADS = "ad.getWeChatFaceAds";
-		public static String EXPRESSION_COUNT = "exp.count";
-		public static String EXPRESSION_LIST = "exp.list";
+		public static String EXP_COUNT = "exp.count";
+		public static String EXP_LIST = "exp.list";
+		public static String EXP_LOG = "exp.log";
 		public static String EXPRESSION_SHAKE = "expression.shake";
 		public static String FILE_CHECKNEW = "file.checkNew";
 		public static String FILE_COMMIT = "file.commit";
