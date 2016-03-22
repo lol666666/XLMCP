@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import com.xunlei.mcp.test.modules.base.BaseCase;
 import com.xunlei.mcp.test.modules.utils.Constant;
-import com.xunlei.mcp.test.modules.utils.ParamUtils;
 
 public class Init extends BaseCase {
 	@Test(summary = "初始化app必选参数", expectedResults = "初始化成功", index = 1)

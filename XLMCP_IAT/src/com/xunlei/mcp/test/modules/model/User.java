@@ -111,9 +111,11 @@ public class User {
 	 */
 	public JSONObject getJsonResp(String api) {
 		http_param.put("appId", Constant.APP_ID);
-		http_param.put("v", Constant.VERSION);
 		http_param.put("callId", String.valueOf(new Date().getTime()));
 		http_param.put("deviceId", Constant.DEVICE_ID);
+		if (!http_param.containsKey("v")) {
+			http_param.put("v", Constant.VERSION);
+		}
 		if (this.token != null) {
 			http_param.put("t", this.token);
 		}
@@ -138,11 +140,13 @@ public class User {
 	 */
 	public JSONObject postJsonResp(String api) {
 		http_param.put("appId", Constant.APP_ID);
-		http_param.put("v", Constant.VERSION);
 		http_param.put("callId", String.valueOf(new Date().getTime()));
 		http_param.put("deviceId", Constant.DEVICE_ID);
 		http_param.put("ip", "106.39.75.134");
 //		http_param.put("gz", "1");
+		if (!http_param.containsKey("v")) {
+			http_param.put("v", Constant.VERSION);
+		}
 		if (this.token != null) {
 			http_param.put("t", this.token);
 		}

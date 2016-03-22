@@ -96,7 +96,7 @@ public class Get extends BaseCase {
 		}
 	}
 
-	@Test(summary = "获取视频推荐广告（加载更多）", expectedResults = "返回结果格式正确，广告位置9-10", index = 3)
+	@Test(summary = "获取视频推荐广告（加载更多）", expectedResults = "返回结果格式正确，广告位置7-8", index = 3)
 	public void testAdGet3() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
 		g_user.setHttpParam("pid", "4");
@@ -235,7 +235,7 @@ public class Get extends BaseCase {
 		}
 	}
 
-	@Test(summary = "获取表情宫格广告（加载更多）", expectedResults = "返回结果格式正确，广告位置8-10", index = 6)
+	@Test(summary = "获取表情宫格广告（加载更多）", expectedResults = "返回结果格式正确，广告位置6-8", index = 6)
 	public void testAdGet6() {
 		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
 		g_user.setHttpParam("pid", "5");
