@@ -16,9 +16,9 @@ public class GetWeChatFaceAds extends BaseCase {
 	
 	@Test(summary = "获取微信表情流广告", expectedResults = "返回结果格式正确", index = 1)
 	public void testGetWeChatFaceAds() {
-		g_user.setHttpParam("guid", Constant.DEVICE_ID);
+		g_user.setHttpParam("guid", g_user.deviceID);
 		JSONObject body = new JSONObject();
-		body.put("guid", Constant.DEVICE_ID);
+		body.put("guid", g_user.deviceID);
 		body.put("adRule", 16);
 		body.put("recId", "0");
 		body.put("algId", "000");

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
 import java.net.MalformedURLException;
@@ -32,13 +33,24 @@ public class User {
 	private String user_post_url;
 	public Map<String, String> http_param;
 	
-//	public static final String appSecretKey = "bbmCaaacHJnLTydddKrLLUGLddagYRA";
+	Random random = new Random();
+	int imeiIndex = random.nextInt(Constant.IMEI.length - 1);
+	public String imei = Constant.IMEI[imeiIndex];
+	public String deviceID = DigestUtils.md5Hex(imei) + "10";
+
+	// public static final String appSecretKey =
+	// "bbmCaaacHJnLTydddKrLLUGLddagYRA";
 	public static final String appSecretKey = "jXJhmCwAcHJnLTyQuKrLLUGLZexjZbqI";
 	private String loginSecretKey;
 
 	private String platform = Configuration.loadProperties().getProperty(
 			"environment");
-
+	
+	public void setImei(String imei){
+		this.imei = imei;
+		this.deviceID = DigestUtils.md5Hex(this.imei) + "10";
+	}
+	
 	public void setHttpParam(String key, String value) {
 		http_param.put(key, value);
 	}
@@ -112,7 +124,7 @@ public class User {
 	public JSONObject getJsonResp(String api) {
 		http_param.put("appId", Constant.APP_ID);
 		http_param.put("callId", String.valueOf(new Date().getTime()));
-		http_param.put("deviceId", Constant.DEVICE_ID);
+		http_param.put("deviceId", deviceID);
 		if (!http_param.containsKey("v")) {
 			http_param.put("v", Constant.VERSION);
 		}
@@ -141,9 +153,9 @@ public class User {
 	public JSONObject postJsonResp(String api) {
 		http_param.put("appId", Constant.APP_ID);
 		http_param.put("callId", String.valueOf(new Date().getTime()));
-		http_param.put("deviceId", Constant.DEVICE_ID);
+		http_param.put("deviceId", deviceID);
 		http_param.put("ip", "106.39.75.134");
-//		http_param.put("gz", "1");
+		// http_param.put("gz", "1");
 		if (!http_param.containsKey("v")) {
 			http_param.put("v", Constant.VERSION);
 		}
@@ -154,7 +166,7 @@ public class User {
 		http_param.put("sig", sig);
 		paramsPrint(http_param);
 
-		String urlHead = user_post_url.substring(0,5);
+		String urlHead = user_post_url.substring(0, 5);
 		JSONObject resultObject = null;
 		if (urlHead.equals("https")) {
 			try {
@@ -167,7 +179,7 @@ public class User {
 		} else {
 			resultObject = HttpTools.httpPostRequest(
 					ParamUtils.GetPostUrl(user_post_url, api), http_param);
-		}	
+		}
 		http_param.clear();
 		return resultObject;
 	}
@@ -187,7 +199,7 @@ public class User {
 		http_param.put("appId", Constant.APP_ID);
 		http_param.put("v", Constant.VERSION);
 		http_param.put("callId", String.valueOf(new Date().getTime()));
-		http_param.put("deviceId", Constant.DEVICE_ID);
+		http_param.put("deviceId", deviceID);
 		if (this.token != null) {
 			http_param.put("t", this.token);
 		}
@@ -195,8 +207,7 @@ public class User {
 		http_param.put("sig", sig);
 		paramsPrint(http_param);
 		System.out.println("上传服务地址：" + api);
-		JSONObject result = HttpTools.UploadHttpFile(api, http_param,
-				filePath);
+		JSONObject result = HttpTools.UploadHttpFile(api, http_param, filePath);
 		http_param.clear();
 		return result;
 	}
@@ -231,7 +242,7 @@ public class User {
 		param.put("appId", Constant.APP_ID);
 		param.put("v", Constant.VERSION);
 		param.put("callId", String.valueOf(new Date().getTime()));
-		http_param.put("deviceId", Constant.DEVICE_ID);
+		http_param.put("deviceId", deviceID);
 		String sig = sig(param);
 		param.put("sig", sig);
 

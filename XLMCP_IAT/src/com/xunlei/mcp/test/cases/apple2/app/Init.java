@@ -13,7 +13,7 @@ import com.xunlei.mcp.test.modules.utils.Constant;
 public class Init extends BaseCase {
 	@Test(summary = "初始化app必选参数", expectedResults = "初始化成功", index = 1)
 	public void testInit1() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("version", "0");
 		g_user.setHttpParam("product_version", "1.0");
 		g_user.setHttpParam("language", "zh");
@@ -30,7 +30,7 @@ public class Init extends BaseCase {
 	
 	@Test(summary = "初始化app全部参数", expectedResults = "初始化成功", index = 2)
 	public void testInit2() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("version", "0");
 		g_user.setHttpParam("product_version", "0.1.5");
 		g_user.setHttpParam("language", "zh");
@@ -46,8 +46,8 @@ public class Init extends BaseCase {
 		g_user.setHttpParam("miui_type", "development");
 		g_user.setHttpParam("mac", Constant.MAC);
 		g_user.setHttpParam("macMd5", DigestUtils.md5Hex(Constant.MAC));
-		g_user.setHttpParam("imei", Constant.IMEI);
-		g_user.setHttpParam("imeiMd5", DigestUtils.md5Hex(Constant.IMEI));
+		g_user.setHttpParam("imei", g_user.imei);
+		g_user.setHttpParam("imeiMd5", DigestUtils.md5Hex(g_user.imei));
 //		String macAes = ParamUtils.encrypt(Constant.MAC, Constant.AES_PASSWORD);
 //		g_user.setHttpParam("macAes", macAes);
 //		String imeiAes = ParamUtils.encrypt(Constant.IMEI, Constant.AES_PASSWORD);
@@ -63,8 +63,8 @@ public class Init extends BaseCase {
 		g_user.setHttpParam("miui_type", "development");
 		g_user.setHttpParam("mac", Constant.MAC);
 		g_user.setHttpParam("macMd5", DigestUtils.md5Hex(Constant.MAC));
-		g_user.setHttpParam("imei", Constant.IMEI);
-		g_user.setHttpParam("imeiMd5", DigestUtils.md5Hex(Constant.IMEI));
+		g_user.setHttpParam("imei", g_user.imei);
+		g_user.setHttpParam("imeiMd5", DigestUtils.md5Hex(g_user.imei));
 //		String macAes = ParamUtils.encrypt(Constant.MAC, Constant.AES_PASSWORD);
 //		g_user.setHttpParam("macAes", macAes);
 //		String imeiAes = ParamUtils.encrypt(Constant.IMEI, Constant.AES_PASSWORD);

@@ -16,7 +16,7 @@ public class Track extends BaseCase{
 	
 	@Test(summary = "推荐广告的用户反馈为直接下载", expectedResults = "返回结果成功", index = 1)
 	public void testTrack_Download() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("itemId", "com.xunlei.fileexplorer");
 		g_user.setHttpParam("type", "direct_download");
@@ -28,7 +28,7 @@ public class Track extends BaseCase{
 	
 	@Test(summary = "推荐广告的用户反馈为进入详情页", expectedResults = "返回结果成功", index = 2)
 	public void testTrack_Detail() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("itemId", "com.xunlei.fileexplorer");
 		g_user.setHttpParam("type", "open_detail");
@@ -40,7 +40,7 @@ public class Track extends BaseCase{
 	
 	@Test(summary = "推荐广告的用户反馈为打开应用", expectedResults = "返回结果成功", index = 3)
 	public void testTrack_Open() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("itemId", "com.xunlei.fileexplorer");
 		g_user.setHttpParam("type", "open");
@@ -52,7 +52,7 @@ public class Track extends BaseCase{
 	
 	@Test(summary = "推荐广告的用户反馈为不喜欢", expectedResults = "返回结果成功", index = 4)
 	public void testTrack_Dislike() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("itemId", "com.xunlei.fileexplorer");
 		g_user.setHttpParam("type", "dislike");

@@ -17,7 +17,7 @@ public class Get extends BaseCase {
 
 	@Test(summary = "获取视频推荐广告（首次进入）", expectedResults = "返回结果格式正确，广告位置5", index = 1)
 	public void testAdGet1() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("pid", "4");
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "shortVideo");
@@ -57,7 +57,7 @@ public class Get extends BaseCase {
 
 	@Test(summary = "获取视频推荐广告（下拉刷新）", expectedResults = "返回结果格式正确，广告位置5-8", index = 2)
 	public void testAdGet2() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("pid", "4");
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "shortVideo");
@@ -98,7 +98,7 @@ public class Get extends BaseCase {
 
 	@Test(summary = "获取视频推荐广告（加载更多）", expectedResults = "返回结果格式正确，广告位置7-8", index = 3)
 	public void testAdGet3() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("pid", "4");
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "shortVideo");
@@ -139,7 +139,7 @@ public class Get extends BaseCase {
 
 	@Test(summary = "获取表情宫格广告（首次进入）", expectedResults = "返回结果格式正确，广告位置2", index = 4)
 	public void testAdGet4() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("pid", "5");
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "emoji");
@@ -188,7 +188,7 @@ public class Get extends BaseCase {
 
 	@Test(summary = "获取表情宫格广告（下拉刷新）", expectedResults = "返回结果格式正确，广告位置2-5", index = 5)
 	public void testAdGet5() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("pid", "5");
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "emoji");
@@ -237,7 +237,7 @@ public class Get extends BaseCase {
 
 	@Test(summary = "获取表情宫格广告（加载更多）", expectedResults = "返回结果格式正确，广告位置6-8", index = 6)
 	public void testAdGet6() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("pid", "5");
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "emoji");
@@ -286,7 +286,7 @@ public class Get extends BaseCase {
 
 	@Test(summary = "获取表情组插入的单个广告", expectedResults = "返回结果格式正确", index = 7)
 	public void testAdGet7() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("pid", "6");
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "emoji");
@@ -331,7 +331,7 @@ public class Get extends BaseCase {
 	
 	@Test(summary = "获取信息流大图广告", expectedResults = "返回结果格式正确", index = 8)
 	public void testAdGet8() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("pid", "7");
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "emoji");
@@ -374,7 +374,7 @@ public class Get extends BaseCase {
 	
 	@Test(summary = "获取信息流小图广告", expectedResults = "返回结果格式正确", index = 9)
 	public void testAdGet9() {
-		g_user.setHttpParam("deviceId", Constant.DEVICE_ID);
+		g_user.setHttpParam("deviceId", g_user.deviceID);
 		g_user.setHttpParam("pid", "8");
 		g_user.setHttpParam("mainName", "com.android.fileexplorer");
 		g_user.setHttpParam("recType", "emoji");

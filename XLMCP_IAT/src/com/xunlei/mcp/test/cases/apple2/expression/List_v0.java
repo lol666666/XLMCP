@@ -16,7 +16,7 @@ import com.xunlei.mcp.test.modules.utils.Constant;
 public class List_v0 extends BaseCase {
 	@Test(summary = "获取表情组列表(首次进入)", expectedResults = "返回结果格式正确", index = 1)
 	public void testExpList_First() {
-		g_user.setHttpParam("lastId", "1:92_2:-1_3:-1");
+		g_user.setHttpParam("lastId", "0");
 		g_user.setHttpParam("pageSize", "10");
 		g_user.setHttpParam("type", "refresh");
 		g_user.setHttpParam("version", "1.7.1");
@@ -47,7 +47,7 @@ public class List_v0 extends BaseCase {
 	
 	@Test(summary = "获取表情组列表(下拉刷新)", expectedResults = "返回结果格式正确", index = 2)
 	public void testExpList_Refresh() {
-		g_user.setHttpParam("lastId", "1:92_2:-1_3:-1");
+		g_user.setHttpParam("lastId", "0");
 		g_user.setHttpParam("pageSize", "10");
 		g_user.setHttpParam("type", "refresh");
 		g_user.setHttpParam("version", "1.7.1");
@@ -78,7 +78,7 @@ public class List_v0 extends BaseCase {
 	
 	@Test(summary = "获取表情组列表(加载更多)", expectedResults = "返回结果格式正确", index = 3)
 	public void testExpList_Loadmore() {
-		g_user.setHttpParam("lastId", "1:92_2:-1_3:-1");
+		g_user.setHttpParam("lastId", "30");
 		g_user.setHttpParam("pageSize", "10");
 		g_user.setHttpParam("type", "loadmore");
 		g_user.setHttpParam("version", "1.7.1");

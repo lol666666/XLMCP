@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 import com.xunlei.mcp.test.modules.base.BaseCase;
 import com.xunlei.mcp.test.modules.utils.Constant;
@@ -11,8 +12,12 @@ import com.xunlei.mcp.test.modules.utils.Constant;
 public class Get extends BaseCase {
 	@Test(summary = "获取云控配置", expectedResults = "返回结果格式正确", index = 1)
 	public void testConfigGet() {
-		g_user.setHttpParam("guid", Constant.DEVICE_ID);
-		g_user.setHttpParam("appVersion", "1.7.0");
+		String guid = DigestUtils.md5Hex(g_user.imei) + "10";
+		
+		g_user.setHttpParam("guid", guid);
+		g_user.setHttpParam("appVersion", "1.7.2");
+		System.out.println("IMEI = " + g_user.imei);
+		System.out.println("MD5后DeviceID = " + DigestUtils.md5Hex(guid));
 		JSONObject result = g_user.postJsonResp(Constant.CONFIGURE_GET);
 		assertNotNull("返回结果为空", result);
 		String dataString = result.getString("data");
