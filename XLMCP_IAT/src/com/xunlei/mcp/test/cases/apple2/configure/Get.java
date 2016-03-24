@@ -12,6 +12,7 @@ import com.xunlei.mcp.test.modules.utils.Constant;
 public class Get extends BaseCase {
 	@Test(summary = "获取云控配置", expectedResults = "返回结果格式正确", index = 1)
 	public void testConfigGet() {
+		g_user.setImei("869336022088937");
 		String guid = DigestUtils.md5Hex(g_user.imei) + "10";
 		
 		g_user.setHttpParam("guid", guid);

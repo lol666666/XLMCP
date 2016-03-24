@@ -49,7 +49,7 @@ public class List_v2 extends BaseCase {
 
 	@Test(summary = "加载更多热门表情列表", expectedResults = "返回结果格式正确", index = 2)
 	public void testExpList_LoadHot() {
-		g_user.setHttpParam("lastId", "20");
+		g_user.setHttpParam("lastId", "749");
 		g_user.setHttpParam("pageSize", "10");
 		g_user.setHttpParam("type", "loadmore");
 		g_user.setHttpParam("category", "hot");
